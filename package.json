@@ -1,8 +1,0 @@
-{
-  "name": "fetchmd",
-  "version": "1.0.0",
-  "description": "Convert webpages to clean Markdown",
-  "scripts": {
-    "build": "echo 'Static site - no build needed'"
-  }
-}
