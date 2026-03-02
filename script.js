@@ -191,7 +191,16 @@ async function fetchContent() {
             body: JSON.stringify({ url })
         });
 
-        const data = await response.json();
+        let data;
+        const contentType = response.headers.get('content-type');
+
+        if (contentType && contentType.includes('application/json')) {
+            data = await response.json();
+        } else {
+            // Response is not JSON (probably an error page)
+            const text = await response.text();
+            throw new Error('Server error: ' + text.substring(0, 100));
+        }
 
         if (!response.ok) {
             throw new Error(data.error || 'Failed to fetch content');
@@ -200,6 +209,7 @@ async function fetchContent() {
         displayResult(data);
 
     } catch (err) {
+        console.error('Fetch error:', err);
         showError(err.message);
     } finally {
         hideLoading();
