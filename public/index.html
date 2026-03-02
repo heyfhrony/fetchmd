@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FetchMD - Webpage to Markdown</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="main-content">
+            <div class="left-panel">
+                <header>
+                    <h1>📄 FetchMD</h1>
+                    <p class="subtitle">Convert any webpage to clean Markdown</p>
+                </header>
+
+                <div class="input-section">
+                    <input
+                        type="url"
+                        id="urlInput"
+                        placeholder="Enter a URL (e.g., https://example.com/article)"
+                        autocomplete="off"
+                    >
+                    <div id="error" class="error hidden"></div>
+                    <button id="fetchBtn">Fetch & Convert</button>
+                </div>
+
+                <div id="loading" class="loading hidden">
+                    <div class="spinner"></div>
+                    <p>Fetching content...</p>
+                </div>
+
+                <div class="input-info" id="inputInfo">
+                    <h3>How to use</h3>
+                    <p>Enter any public webpage URL to extract and convert its main content to clean Markdown.</p>
+                    <p>Works best with:</p>
+                    <ul>
+                        <li>Blog posts</li>
+                        <li>News articles</li>
+                        <li>Documentation</li>
+                        <li>Long-form content</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="right-panel">
+                <div id="result" class="result hidden">
+            <div class="result-header">
+                <h2 id="articleTitle"></h2>
+                <div class="meta">
+                    <span id="byline"></span>
+                    <span id="length"></span>
+                </div>
+            </div>
+
+            <div class="tabs">
+                <button class="tab active" data-tab="markdown">Markdown</button>
+                <button class="tab" data-tab="preview">Preview</button>
+            </div>
+
+            <div class="tab-content">
+                <div id="markdown" class="tab-pane active">
+                    <div class="markdown-actions">
+                        <button id="listenBtn" class="action-btn">🔊 Listen</button>
+                        <button id="copyBtn" class="action-btn">📋 Copy</button>
+                    </div>
+
+                    <div id="simpleAudioControls" class="simple-audio-controls hidden">
+                        <div class="audio-control-header">
+                            <span class="audio-playing-text" id="audioStatusText">🔊 Playing...</span>
+                            <div class="audio-control-buttons">
+                                <button id="pauseResumeBtn" class="audio-ctrl-btn">⏸ Pause</button>
+                                <button id="stopAudioBtn" class="audio-ctrl-btn">⏹ Stop</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <pre><code id="markdownCode"></code></pre>
+                </div>
+                <div id="preview" class="tab-pane"></div>
+            </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Built with <a href="https://github.com/mozilla/readability" target="_blank">Readability</a> and <a href="https://github.com/mixmark-io/turndown" target="_blank">Turndown</a></p>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked@11.0.0/marked.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
