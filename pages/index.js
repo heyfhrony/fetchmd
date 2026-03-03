@@ -137,7 +137,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-      <div className="main-content">
+      <div className={`main-content ${result ? 'has-result' : ''}`}>
         <div className="left-panel">
           <header>
             <h1>FetchMD</h1>
@@ -180,8 +180,8 @@ export default function Home() {
           )}
         </div>
 
-        <div className="right-panel">
-          {result && (
+        {result && (
+          <div className="right-panel">
             <div id="result">
               <div className="result-header">
                 <h2 id="articleTitle">{result.title || 'Untitled'}</h2>
@@ -230,8 +230,8 @@ export default function Home() {
                 </div>
               </div>
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
 
       <style jsx global>{`
@@ -250,20 +250,28 @@ export default function Home() {
         .main-content {
           display: flex;
           min-height: 100vh;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .main-content.has-result {
+          justify-content: flex-start;
+          align-items: stretch;
         }
 
         .left-panel {
-          width: 400px;
+          width: 100%;
+          max-width: 500px;
           padding: 40px;
-          border-right: 1px solid #000;
           display: flex;
           flex-direction: column;
           gap: 30px;
         }
 
-        .container.has-results .left-panel {
-          width: 350px;
-          padding: 30px 20px;
+        .main-content.has-result .left-panel {
+          width: 400px;
+          max-width: 400px;
+          border-right: 1px solid #000;
         }
 
         header h1 {
@@ -385,6 +393,7 @@ export default function Home() {
           flex: 1;
           padding: 40px;
           overflow-y: auto;
+          display: block;
         }
 
         #result {
