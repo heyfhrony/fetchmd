@@ -1,7 +1,7 @@
-const axios = require('axios');
-const { Readability } = require('@mozilla/readability');
-const { JSDOM } = require('jsdom');
-const TurndownService = require('turndown');
+import axios from 'axios';
+import { Readability } from '@mozilla/readability';
+import { JSDOM } from 'jsdom';
+import TurndownService from 'turndown';
 
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
